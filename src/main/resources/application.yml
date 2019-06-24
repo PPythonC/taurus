@@ -1,0 +1,58 @@
+server:
+  use-forward-headers: true
+  port: 8091
+  undertow:
+    io-threads: 2
+    worker-threads: 36
+    buffer-size: 1024
+    direct-buffers: true
+  servlet:
+    session:
+      timeout: 86400s
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/taurus?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Pythonc0615
+#  h2:
+#    console:
+#      settings:
+#        web-allow-others: true
+#      path: /h2-console
+#      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    suffix: .ftl
+    settings:
+      auto_import: /spring.ftl as spring
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+#  配置cache
+  cache:
+    type: ehcache
+    ehcache:
+      config: ehcache.xml
+
+  messages:
+    basename: i18n/messages
+logging:
+  file: ./logs/log.log
